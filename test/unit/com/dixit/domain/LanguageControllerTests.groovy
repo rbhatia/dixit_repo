@@ -18,35 +18,35 @@ class LanguageControllerTests {
 
     void testIndex() {
         controller.index()
-        assert "/languages/list" == response.redirectedUrl
+        assert "/language/list" == response.redirectedUrl
     }
 
     void testList() {
 
         def model = controller.list()
 
-        assert model.languagesInstanceList.size() == 0
-        assert model.languagesInstanceTotal == 0
+        assert model.languageInstanceList.size() == 0
+        assert model.languageInstanceTotal == 0
     }
 
     void testCreate() {
        def model = controller.create()
 
-       assert model.languagesInstance != null
+       assert model.languageInstance != null
     }
 
     void testSave() {
         controller.save()
 
-        assert model.languagesInstance != null
-        assert view == '/languages/create'
+        assert model.languageInstance != null
+        assert view == '/language/create'
 
         response.reset()
 
         populateValidParams(params)
         controller.save()
 
-        assert response.redirectedUrl == '/languages/show/1'
+        assert response.redirectedUrl == '/language/show/1'
         assert controller.flash.message != null
         assert Language.count() == 1
     }
@@ -55,105 +55,105 @@ class LanguageControllerTests {
         controller.show()
 
         assert flash.message != null
-        assert response.redirectedUrl == '/languages/list'
+        assert response.redirectedUrl == '/language/list'
 
 
         populateValidParams(params)
-        def languages = new Language(params)
+        def language = new Language(params)
 
-        assert languages.save() != null
+        assert language.save() != null
 
-        params.id = languages.id
+        params.id = language.id
 
         def model = controller.show()
 
-        assert model.languagesInstance == languages
+        assert model.languageInstance == language
     }
 
     void testEdit() {
         controller.edit()
 
         assert flash.message != null
-        assert response.redirectedUrl == '/languages/list'
+        assert response.redirectedUrl == '/language/list'
 
 
         populateValidParams(params)
-        def languages = new Language(params)
+        def language = new Language(params)
 
-        assert languages.save() != null
+        assert language.save() != null
 
-        params.id = languages.id
+        params.id = language.id
 
         def model = controller.edit()
 
-        assert model.languagesInstance == languages
+        assert model.languageInstance == language
     }
 
     void testUpdate() {
         controller.update()
 
         assert flash.message != null
-        assert response.redirectedUrl == '/languages/list'
+        assert response.redirectedUrl == '/language/list'
 
         response.reset()
 
 
         populateValidParams(params)
-        def languages = new Language(params)
+        def language = new Language(params)
 
-        assert languages.save() != null
+        assert language.save() != null
 
         // test invalid parameters in update
-        params.id = languages.id
+        params.id = language.id
         //TODO: add invalid values to params object
 
         controller.update()
 
-        assert view == "/languages/edit"
-        assert model.languagesInstance != null
+        assert view == "/language/edit"
+        assert model.languageInstance != null
 
-        languages.clearErrors()
+        language.clearErrors()
 
         populateValidParams(params)
         controller.update()
 
-        assert response.redirectedUrl == "/languages/show/$languages.id"
+        assert response.redirectedUrl == "/language/show/$language.id"
         assert flash.message != null
 
         //test outdated version number
         response.reset()
-        languages.clearErrors()
+        language.clearErrors()
 
         populateValidParams(params)
-        params.id = languages.id
+        params.id = language.id
         params.version = -1
         controller.update()
 
-        assert view == "/languages/edit"
-        assert model.languagesInstance != null
-        assert model.languagesInstance.errors.getFieldError('version')
+        assert view == "/language/edit"
+        assert model.languageInstance != null
+        assert model.languageInstance.errors.getFieldError('version')
         assert flash.message != null
     }
 
     void testDelete() {
         controller.delete()
         assert flash.message != null
-        assert response.redirectedUrl == '/languages/list'
+        assert response.redirectedUrl == '/language/list'
 
         response.reset()
 
         populateValidParams(params)
-        def languages = new Language(params)
+        def language = new Language(params)
 
-        assert languages.save() != null
+        assert language.save() != null
         assert Language.count() == 1
 
-        params.id = languages.id
+        params.id = language.id
 
         controller.delete()
 
         assert Language.count() == 0
-        assert Language.get(languages.id) == null
-        assert response.redirectedUrl == '/languages/list'
+        assert Language.get(language.id) == null
+        assert response.redirectedUrl == '/language/list'
     }
 }
