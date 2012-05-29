@@ -10,7 +10,7 @@ class User {
 	String userName
 	String password
 	Boolean isEnabled
-	Role roleId
+	Role role
 	Date dateAdded
 	
 	

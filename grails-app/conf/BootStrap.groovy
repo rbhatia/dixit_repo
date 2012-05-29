@@ -67,9 +67,9 @@ class BootStrap {
 		}
 		
 		
-		def user1=new User(firstName:"Sam", lastName:"Sami", userName:"samu",password:"sam",isEnabled:new Boolean(true),roleId:role1,dateAdded:new Date())
-		def user2=new User(firstName:"Pam", lastName:"Pami", userName:"pamu",password:"pam",isEnabled:new Boolean(true),roleId:role2,dateAdded:new Date())
-		def user3=new User(firstName:"Aan", lastName:"Aani", userName:"aanu",password:"aan",isEnabled:new Boolean(true),roleId:role3,dateAdded:new Date())
+		def user1=new User(firstName:"Sam", lastName:"Sami", userName:"samu",password:"sam",isEnabled:new Boolean(true),role:role1,dateAdded:new Date())
+		def user2=new User(firstName:"Pam", lastName:"Pami", userName:"pamu",password:"pam",isEnabled:new Boolean(true),role:role2,dateAdded:new Date())
+		def user3=new User(firstName:"Aan", lastName:"Aani", userName:"aanu",password:"aan",isEnabled:new Boolean(true),role:role3,dateAdded:new Date())
 		
 		
 		

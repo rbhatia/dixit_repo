@@ -6,8 +6,8 @@ class Role {
 	
 	
 	String roleName
-
-    static constraints = {
+	
+	static constraints = {
 		roleName(blank:false)
 		
     }
